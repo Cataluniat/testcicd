@@ -38,7 +38,7 @@ jobs:
         env:
           SSH_HOST: ${{ env.REMOTE_HOST }}
           SSH_USER: ${{ env.REMOTE_USER }}
-          SSH_KEY: ${{ secrets.!!secrets_key_name }} 
+          SSH_KEY: ${{ secrets.EC2_SSH_KEY }} 
       - name: List home directory
         run: ssh ec2 'ls -la'
         
