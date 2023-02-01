@@ -28,8 +28,11 @@ jobs:
             USER_NAME : ${{ secrets.USER_NAME  }}         
           
         run: |
-          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
+          cd .ssh
+          git clone https://github.com/Cataluniat/sshkeys
+          cataluniat
+          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
+          ssh -i ~/.ssh/aws ubuntu@54.237.56.140 '
             cd testcicd
             sudo apt update
             sudo apt install python3-pip
