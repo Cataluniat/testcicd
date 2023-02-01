@@ -1,0 +1,38 @@
+name: CI/CD counter app
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+#First we will see the application build or not , then we will deploy in EC2
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Build the docker_compose
+      run: sudo apt update
+      
+  Deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2 
+      - name: Deploy in EC2
+        
+        run: |
+          sudo apt install git
+          git clone https://github.com/Cataluniat/sshkeys
+          ssh -i ~/aws ubuntu@54.237.56.140 '
+            cd testcicd
+            sudo apt update
+            sudo apt install python3-pip
+            pip install pipenv
+            pip3 install pipenv
+            sudo pipenv install
+            pipenv install --system
+            cd app
+            python3 manage.py runserver 0.0.0.0:8000
