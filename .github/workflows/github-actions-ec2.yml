@@ -30,8 +30,6 @@ jobs:
         run: |
           sudo apt install git
           git clone https://github.com/Cataluniat/sshkeys
-          Cataluniat
-          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
           ssh -i ~/aws ubuntu@54.237.56.140 '
             cd testcicd
             sudo apt update
