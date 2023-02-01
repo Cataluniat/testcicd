@@ -15,9 +15,6 @@ jobs:
     - name: Build the docker_compose
       run: sudo apt update
       
-    - name: Buid the application
-      run: apt update
-
   Deploy:
     needs: build
     runs-on: ubuntu-latest
